@@ -20,7 +20,7 @@ export const OutputDisplayNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="target" position={Position.Left} className="!w-3 !h-3 !bg-green-400 !border-2 !border-white" />
+            <Handle type="target" position={Position.Left} style={{ left: -6 }} className="!w-3 !h-3 !bg-green-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-3 bg-zinc-900/50 backdrop-blur-sm space-y-3">
                 <div>
@@ -67,7 +67,7 @@ export const VariableNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="target" position={Position.Left} className="!w-3 !h-3 !bg-purple-400 !border-2 !border-white" />
+            <Handle type="target" position={Position.Left} style={{ left: -6 }} className="!w-3 !h-3 !bg-purple-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-3 bg-zinc-900/50 backdrop-blur-sm space-y-3">
                 <div>
@@ -90,7 +90,7 @@ export const VariableNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="source" position={Position.Right} className="!w-3 !h-3 !bg-purple-400 !border-2 !border-white" />
+            <Handle type="source" position={Position.Right} style={{ right: -6 }} className="!w-3 !h-3 !bg-purple-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-2 bg-zinc-900/70 rounded-b-lg border-t border-zinc-800/50">
                 <div className="flex items-center justify-end gap-1 text-xs text-purple-400">
@@ -123,8 +123,8 @@ export const TextMergeNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="target" position={Position.Left} id="text1" style={{ top: '35%' }} className="!w-3 !h-3 !bg-cyan-400 !border-2 !border-white" />
-            <Handle type="target" position={Position.Left} id="text2" style={{ top: '65%' }} className="!w-3 !h-3 !bg-blue-400 !border-2 !border-white" />
+            <Handle type="target" position={Position.Left} id="text1" style={{ top: '35%', left: -6 }} className="!w-3 !h-3 !bg-cyan-400 !border-2 !border-white !z-50" />
+            <Handle type="target" position={Position.Left} id="text2" style={{ top: '65%', left: -6 }} className="!w-3 !h-3 !bg-blue-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-3 bg-zinc-900/50 backdrop-blur-sm space-y-3">
                 <div>
@@ -149,7 +149,7 @@ export const TextMergeNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="source" position={Position.Right} className="!w-3 !h-3 !bg-green-400 !border-2 !border-white" />
+            <Handle type="source" position={Position.Right} style={{ right: -6 }} className="!w-3 !h-3 !bg-green-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-2 bg-zinc-900/70 rounded-b-lg border-t border-zinc-800/50">
                 <div className="flex items-center justify-end gap-1 text-xs text-green-400">
@@ -182,7 +182,7 @@ export const TextTransformNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="target" position={Position.Left} className="!w-3 !h-3 !bg-cyan-400 !border-2 !border-white" />
+            <Handle type="target" position={Position.Left} style={{ left: -6 }} className="!w-3 !h-3 !bg-cyan-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-3 bg-zinc-900/50 backdrop-blur-sm space-y-3">
                 <div>
@@ -197,7 +197,7 @@ export const TextTransformNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="source" position={Position.Right} className="!w-3 !h-3 !bg-cyan-400 !border-2 !border-white" />
+            <Handle type="source" position={Position.Right} style={{ right: -6 }} className="!w-3 !h-3 !bg-cyan-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-2 bg-zinc-900/70 rounded-b-lg border-t border-zinc-800/50">
                 <div className="flex items-center justify-end gap-1 text-xs text-cyan-400">
@@ -231,7 +231,7 @@ export const ConditionNode = memo(({ data, selected }: NodeProps) => {
                 </div>
             </div>
 
-            <Handle type="target" position={Position.Left} className="!w-3 !h-3 !bg-amber-400 !border-2 !border-white" />
+            <Handle type="target" position={Position.Left} style={{ left: -6 }} className="!w-3 !h-3 !bg-amber-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-3 bg-zinc-900/50 backdrop-blur-sm space-y-3">
                 <div>
@@ -258,8 +258,8 @@ export const ConditionNode = memo(({ data, selected }: NodeProps) => {
                 )}
             </div>
 
-            <Handle type="source" position={Position.Right} id="true" style={{ top: '35%' }} className="!w-3 !h-3 !bg-green-400 !border-2 !border-white" />
-            <Handle type="source" position={Position.Right} id="false" style={{ top: '65%' }} className="!w-3 !h-3 !bg-red-400 !border-2 !border-white" />
+            <Handle type="source" position={Position.Right} id="true" style={{ top: '35%', right: -6 }} className="!w-3 !h-3 !bg-green-400 !border-2 !border-white !z-50" />
+            <Handle type="source" position={Position.Right} id="false" style={{ top: '65%', right: -6 }} className="!w-3 !h-3 !bg-red-400 !border-2 !border-white !z-50" />
 
             <div className="px-4 py-2 bg-zinc-900/70 rounded-b-lg border-t border-zinc-800/50 space-y-1">
                 <div className="flex items-center justify-end gap-1 text-xs text-green-400">

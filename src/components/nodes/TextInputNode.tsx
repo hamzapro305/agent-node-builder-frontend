@@ -34,7 +34,8 @@ export const TextInputNode = memo(({ data, selected }: NodeProps) => {
             <Handle
                 type="source"
                 position={Position.Right}
-                className="!w-3 !h-3 !bg-blue-400 !border-2 !border-white"
+                style={{ right: -6 }}
+                className="!w-3 !h-3 !bg-blue-400 !border-2 !border-white !z-50"
             />
 
             <div className="px-4 py-2 bg-zinc-900/70 rounded-b-lg border-t border-zinc-800/50">

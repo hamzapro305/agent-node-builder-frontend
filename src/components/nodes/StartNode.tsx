@@ -20,7 +20,8 @@ export const StartNode = memo(({ data, selected }: NodeProps) => {
             <Handle
                 type="source"
                 position={Position.Right}
-                className="!w-3 !h-3 !bg-emerald-300 !border-2 !border-white"
+                style={{ right: -6 }}
+                className="!w-3 !h-3 !bg-emerald-300 !border-2 !border-white !z-50"
             />
         </div>
     );

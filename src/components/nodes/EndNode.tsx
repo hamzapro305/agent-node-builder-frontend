@@ -8,7 +8,8 @@ export const EndNode = memo(({ data, selected }: NodeProps) => {
             <Handle
                 type="target"
                 position={Position.Left}
-                className="!w-3 !h-3 !bg-red-300 !border-2 !border-white"
+                style={{ left: -6 }}
+                className="!w-3 !h-3 !bg-red-300 !border-2 !border-white !z-50"
             />
             <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">

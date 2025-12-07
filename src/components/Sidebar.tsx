@@ -1,31 +1,36 @@
 'use client';
 
 export default function Sidebar() {
-    // Essential Flow
-    const flowNodes = [
-        { id: 'start', label: 'Start', color: 'bg-emerald-500', description: 'Entry point', icon: '▶️' },
-        { id: 'outputdisplay', label: 'Output Display', color: 'bg-green-500', description: 'Show final result', icon: '📤' },
-        { id: 'end', label: 'End', color: 'bg-red-500', description: 'Workflow end', icon: '⏹️' },
+    // LLM Models
+    const llmNodes = [
+        { id: 'chatopenai', label: 'ChatOpenAI', color: 'bg-orange-500', description: 'langchain.chat_models', icon: '🦜' },
     ];
 
-    // AI & LLM
-    const aiNodes = [
-        { id: 'openai', label: 'AI Chat', color: 'bg-emerald-600', description: 'OpenAI completion', icon: '🤖' },
-        { id: 'prompttemplate', label: 'Prompt Builder', color: 'bg-purple-500', description: 'Build prompts', icon: '📋' },
+    // Prompts
+    const promptNodes = [
+        { id: 'prompttemplate', label: 'PromptTemplate', color: 'bg-blue-500', description: 'langchain.prompts', icon: '📝' },
+        { id: 'chatprompttemplate', label: 'ChatPromptTemplate', color: 'bg-blue-500', description: 'langchain.prompts', icon: '💬' },
     ];
 
-    // Input & Data
-    const inputNodes = [
-        { id: 'textinput', label: 'Text Input', color: 'bg-blue-500', description: 'User input', icon: '📝' },
-        { id: 'variable', label: 'Variable', color: 'bg-purple-600', description: 'Store & reuse', icon: '💾' },
+    // Chains
+    const chainNodes = [
+        { id: 'llmchain', label: 'LLMChain', color: 'bg-purple-500', description: 'langchain.chains', icon: '⛓️' },
+        { id: 'sequentialchain', label: 'SequentialChain', color: 'bg-purple-500', description: 'langchain.chains', icon: '🔄' },
     ];
 
-    // Text Tools (Practical)
-    const toolsNodes = [
-        { id: 'textmerge', label: 'Merge Texts', color: 'bg-cyan-500', description: 'Combine texts', icon: '🔗' },
-        { id: 'texttransform', label: 'Transform Text', color: 'bg-cyan-500', description: 'Change case', icon: '✨' },
-        { id: 'condition', label: 'Condition', color: 'bg-amber-500', description: 'Check content', icon: '🔍' },
-        { id: 'jsonparser', label: 'JSON Parser', color: 'bg-cyan-600', description: 'Parse JSON', icon: '📦' },
+    // Memory & Parsers
+    const memoryNodes = [
+        { id: 'conversationbuffermemory', label: 'ConversationBufferMemory', color: 'bg-green-500', description: 'langchain.memory', icon: '🧠' },
+        { id: 'stroutputparser', label: 'StrOutputParser', color: 'bg-pink-500', description: 'langchain.schema', icon: '📄' },
+        { id: 'structuredoutputparser', label: 'StructuredOutputParser', color: 'bg-pink-500', description: 'Extract JSON', icon: '🛠️' },
+    ];
+
+    // Utilities
+    const utilityNodes = [
+        { id: 'start', label: 'Start', color: 'bg-zinc-500', description: 'Flow Start', icon: '▶️' },
+        { id: 'end', label: 'End', color: 'bg-zinc-500', description: 'Flow End', icon: '⏹️' },
+        { id: 'outputdisplay', label: 'Output Display', color: 'bg-zinc-500', description: 'Show Result', icon: '📤' },
+        { id: 'textinput', label: 'Text Input', color: 'bg-zinc-500', description: 'User Input', icon: '⌨️' },
     ];
 
     const onDragStart = (event: React.DragEvent, nodeType: string, label: string) => {
@@ -48,7 +53,7 @@ export default function Sidebar() {
                     <div className="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors leading-tight">
                         {node.label}
                     </div>
-                    <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-0.5">
+                    <div className="text-[10px] text-zinc-500 group-hover:text-zinc-400 transition-colors mt-0.5 font-mono">
                         {node.description}
                     </div>
                 </div>
@@ -67,46 +72,52 @@ export default function Sidebar() {
         <aside className="w-80 bg-zinc-950 border-r border-zinc-800 flex flex-col">
             {/* Header */}
             <div className="p-6 border-b border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950">
-                <h1 className="text-2xl font-bold text-white mb-1 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                    AI Agent Builder
+                <h1 className="text-2xl font-bold text-white mb-1 bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
+                    LangChain Builder
                 </h1>
-                <p className="text-sm text-zinc-400">Build AI agents in minutes</p>
+                <p className="text-sm text-zinc-400">Visual LangChain Programming</p>
             </div>
 
             {/* Nodes */}
             <div className="flex-1 p-3 overflow-y-auto hide-scrollbar">
-                {/* Flow Control */}
-                <CategoryHeader title="Essential Flow" icon="⚡" color="text-emerald-500" />
+                {/* LLM Models */}
+                <CategoryHeader title="LLM Models" icon="🤖" color="text-orange-500" />
                 <div className="space-y-2">
-                    {flowNodes.map((node) => <NodeCard key={node.id} node={node} />)}
+                    {llmNodes.map((node) => <NodeCard key={node.id} node={node} />)}
                 </div>
 
-                {/* AI */}
-                <CategoryHeader title="AI & Prompts" icon="🤖" color="text-purple-500" />
+                {/* Prompts */}
+                <CategoryHeader title="Prompts" icon="📝" color="text-blue-500" />
                 <div className="space-y-2">
-                    {aiNodes.map((node) => <NodeCard key={node.id} node={node} />)}
+                    {promptNodes.map((node) => <NodeCard key={node.id} node={node} />)}
                 </div>
 
-                {/* Input & Data */}
-                <CategoryHeader title="Input & Storage" icon="📥" color="text-blue-500" />
+                {/* Chains */}
+                <CategoryHeader title="Chains" icon="⛓️" color="text-purple-500" />
                 <div className="space-y-2">
-                    {inputNodes.map((node) => <NodeCard key={node.id} node={node} />)}
+                    {chainNodes.map((node) => <NodeCard key={node.id} node={node} />)}
                 </div>
 
-                {/* Tools */}
-                <CategoryHeader title="Text Tools" icon="🔧" color="text-cyan-500" />
+                {/* Memory & Parsers */}
+                <CategoryHeader title="Memory & Parsers" icon="🧠" color="text-green-500" />
                 <div className="space-y-2">
-                    {toolsNodes.map((node) => <NodeCard key={node.id} node={node} />)}
+                    {memoryNodes.map((node) => <NodeCard key={node.id} node={node} />)}
+                </div>
+
+                {/* Utilities */}
+                <CategoryHeader title="Utilities" icon="🔧" color="text-zinc-500" />
+                <div className="space-y-2">
+                    {utilityNodes.map((node) => <NodeCard key={node.id} node={node} />)}
                 </div>
             </div>
 
-            {/* Examples Footer */}
+            {/* Footer */}
             <div className="p-3 border-t border-zinc-800 bg-gradient-to-br from-zinc-900/50 to-zinc-950/50">
                 <div className="text-[10px] text-zinc-500 space-y-1">
-                    <div className="font-semibold text-zinc-400 mb-1.5">💡 Quick Examples:</div>
-                    <div className="pl-1">• Content Writer Agent</div>
-                    <div className="pl-1">• Email Assistant</div>
-                    <div className="pl-1">• Data Analyzer</div>
+                    <div className="font-semibold text-zinc-400 mb-1.5">💡 LangChain Patterns:</div>
+                    <div className="pl-1 font-mono">PromptTemplate | ChatOpenAI</div>
+                    <div className="pl-1 font-mono">LLMChain(llm, prompt)</div>
+                    <div className="pl-1 font-mono">SequentialChain([chains])</div>
                 </div>
             </div>
         </aside>
