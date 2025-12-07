@@ -1,37 +1,38 @@
 'use client';
 
+// LLM Models
+const llmNodes = [
+    { id: 'chatopenai', label: 'ChatOpenAI', color: 'bg-orange-500', description: 'langchain.chat_models', icon: '🦜' },
+];
+
+// Prompts
+const promptNodes = [
+    { id: 'prompttemplate', label: 'PromptTemplate', color: 'bg-blue-500', description: 'langchain.prompts', icon: '📝' },
+    { id: 'chatprompttemplate', label: 'ChatPromptTemplate', color: 'bg-blue-500', description: 'langchain.prompts', icon: '💬' },
+];
+
+// Chains
+const chainNodes = [
+    { id: 'llmchain', label: 'LLMChain', color: 'bg-purple-500', description: 'langchain.chains', icon: '⛓️' },
+    { id: 'sequentialchain', label: 'SequentialChain', color: 'bg-purple-500', description: 'langchain.chains', icon: '🔄' },
+];
+
+// Memory & Parsers
+const memoryNodes = [
+    { id: 'conversationbuffermemory', label: 'ConversationBufferMemory', color: 'bg-green-500', description: 'langchain.memory', icon: '🧠' },
+    { id: 'stroutputparser', label: 'StrOutputParser', color: 'bg-pink-500', description: 'langchain.schema', icon: '📄' },
+    { id: 'structuredoutputparser', label: 'StructuredOutputParser', color: 'bg-pink-500', description: 'Extract JSON', icon: '🛠️' },
+];
+
+// Utilities
+const utilityNodes = [
+    { id: 'start', label: 'Start', color: 'bg-zinc-500', description: 'Flow Start', icon: '▶️' },
+    { id: 'end', label: 'End', color: 'bg-zinc-500', description: 'Flow End', icon: '⏹️' },
+    { id: 'outputdisplay', label: 'Output Display', color: 'bg-zinc-500', description: 'Show Result', icon: '📤' },
+    { id: 'textinput', label: 'Text Input', color: 'bg-zinc-500', description: 'User Input', icon: '⌨️' },
+];
+
 export default function Sidebar() {
-    // LLM Models
-    const llmNodes = [
-        { id: 'chatopenai', label: 'ChatOpenAI', color: 'bg-orange-500', description: 'langchain.chat_models', icon: '🦜' },
-    ];
-
-    // Prompts
-    const promptNodes = [
-        { id: 'prompttemplate', label: 'PromptTemplate', color: 'bg-blue-500', description: 'langchain.prompts', icon: '📝' },
-        { id: 'chatprompttemplate', label: 'ChatPromptTemplate', color: 'bg-blue-500', description: 'langchain.prompts', icon: '💬' },
-    ];
-
-    // Chains
-    const chainNodes = [
-        { id: 'llmchain', label: 'LLMChain', color: 'bg-purple-500', description: 'langchain.chains', icon: '⛓️' },
-        { id: 'sequentialchain', label: 'SequentialChain', color: 'bg-purple-500', description: 'langchain.chains', icon: '🔄' },
-    ];
-
-    // Memory & Parsers
-    const memoryNodes = [
-        { id: 'conversationbuffermemory', label: 'ConversationBufferMemory', color: 'bg-green-500', description: 'langchain.memory', icon: '🧠' },
-        { id: 'stroutputparser', label: 'StrOutputParser', color: 'bg-pink-500', description: 'langchain.schema', icon: '📄' },
-        { id: 'structuredoutputparser', label: 'StructuredOutputParser', color: 'bg-pink-500', description: 'Extract JSON', icon: '🛠️' },
-    ];
-
-    // Utilities
-    const utilityNodes = [
-        { id: 'start', label: 'Start', color: 'bg-zinc-500', description: 'Flow Start', icon: '▶️' },
-        { id: 'end', label: 'End', color: 'bg-zinc-500', description: 'Flow End', icon: '⏹️' },
-        { id: 'outputdisplay', label: 'Output Display', color: 'bg-zinc-500', description: 'Show Result', icon: '📤' },
-        { id: 'textinput', label: 'Text Input', color: 'bg-zinc-500', description: 'User Input', icon: '⌨️' },
-    ];
 
     const onDragStart = (event: React.DragEvent, nodeType: string, label: string) => {
         event.dataTransfer.setData('application/reactflow', nodeType);

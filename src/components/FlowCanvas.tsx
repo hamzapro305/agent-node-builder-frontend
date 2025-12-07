@@ -13,6 +13,7 @@ import {
     type Edge,
     type NodeMouseHandler,
     type NodeTypes,
+    type ReactFlowInstance,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import {
@@ -48,7 +49,7 @@ export default function FlowCanvas() {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
+    const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
     const nodeTypes: NodeTypes = useMemo(
         () => ({
