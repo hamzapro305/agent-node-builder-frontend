@@ -8,5 +8,11 @@ export { StrOutputParserNode, StructuredOutputParserNode } from './langchain/Par
 // Essential Flow & Utilities
 export { StartNode } from './StartNode';
 export { EndNode } from './EndNode';
-export { OutputDisplayNode } from './practical/PracticalNodes';
+export {
+    OutputDisplayNode,
+    VariableNode,
+    TextMergeNode,
+    TextTransformNode,
+    ConditionNode
+} from './practical/PracticalNodes';
 export { TextInputNode } from './TextInputNode';

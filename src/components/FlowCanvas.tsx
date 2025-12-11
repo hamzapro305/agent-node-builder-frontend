@@ -4,8 +4,6 @@ import { useCallback, useRef, useState, useMemo } from 'react';
 import {
     ReactFlow,
     Background,
-    useNodesState,
-    useEdgesState,
     addEdge,
     BackgroundVariant,
     type OnConnect,
@@ -14,8 +12,20 @@ import {
     type NodeMouseHandler,
     type NodeTypes,
     type ReactFlowInstance,
+    type NodeChange,
+    type EdgeChange,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import {
+    onNodesChange,
+    onEdgesChange,
+    onConnect,
+    setSelectedNode,
+    addNode,
+    deleteNode
+} from '@/store/flowSlice';
 import {
     StartNode,
     EndNode,
@@ -47,8 +57,12 @@ const getId = () => `node_${id++}`;
 
 export default function FlowCanvas() {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const dispatch = useDispatch();
+
+    // Redux State
+    const nodes = useSelector((state: RootState) => state.flow.nodes);
+    const edges = useSelector((state: RootState) => state.flow.edges);
+
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
     const nodeTypes: NodeTypes = useMemo(
@@ -69,11 +83,31 @@ export default function FlowCanvas() {
         []
     );
 
-    const onConnect: OnConnect = useCallback(
-        (connection) => setEdges((eds) => addEdge(connection, eds)),
-        [setEdges]
+    // Callbacks
+    const onNodesChangeCallback = useCallback(
+        (changes: NodeChange[]) => dispatch(onNodesChange(changes)),
+        [dispatch]
     );
 
+    const onEdgesChangeCallback = useCallback(
+        (changes: EdgeChange[]) => dispatch(onEdgesChange(changes)),
+        [dispatch]
+    );
+
+    const onConnectCallback: OnConnect = useCallback(
+        (connection) => dispatch(onConnect(connection)),
+        [dispatch]
+    );
+
+    const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
+        dispatch(setSelectedNode(node));
+    }, [dispatch]);
+
+    const onPaneClick = useCallback(() => {
+        dispatch(setSelectedNode(null));
+    }, [dispatch]);
+
+    // Drag & Drop
     const onDragOver = useCallback((event: React.DragEvent) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
@@ -102,18 +136,17 @@ export default function FlowCanvas() {
                 data: { label: label || type },
             };
 
-            setNodes((nds) => nds.concat(newNode));
+            dispatch(addNode(newNode));
         },
-        [reactFlowInstance, setNodes]
+        [reactFlowInstance, dispatch]
     );
 
     const onNodeContextMenu: NodeMouseHandler = useCallback(
         (event, node) => {
             event.preventDefault();
-            setNodes((nds) => nds.filter((n) => n.id !== node.id));
-            setEdges((eds) => eds.filter((e) => e.source !== node.id && e.target !== node.id));
+            dispatch(deleteNode(node.id));
         },
-        [setNodes, setEdges]
+        [dispatch]
     );
 
     return (
@@ -121,20 +154,23 @@ export default function FlowCanvas() {
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
+                onNodesChange={onNodesChangeCallback}
+                onEdgesChange={onEdgesChangeCallback}
+                onConnect={onConnectCallback}
+                onNodeClick={onNodeClick}
+                onPaneClick={onPaneClick}
                 onInit={setReactFlowInstance}
                 onDrop={onDrop}
                 onDragOver={onDragOver}
                 onNodeContextMenu={onNodeContextMenu}
                 nodeTypes={nodeTypes}
-                fitView
+
                 className="bg-zinc-900"
                 defaultEdgeOptions={{
                     style: { stroke: '#818cf8', strokeWidth: 2 },
                     animated: true,
                 }}
+                proOptions={{ hideAttribution: true }}
             >
 
                 <Background
